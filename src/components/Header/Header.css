@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 18px 70px;
+}
+
+.header_main {
+    background: #DDDEE3;
+}
+
+.header_profile {
+    background: #FAFAFA;
+}
+
+@media screen and (max-width:768px) {
+    .header {
+        padding: 18px 30px;
+    }
+}
+
+@media screen and (max-width:425px) {
+    .header {
+        padding: 18px 14px;
+    }
+}

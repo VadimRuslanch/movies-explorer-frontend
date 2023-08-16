@@ -1,0 +1,160 @@
+.about {
+    background: #FAFAFA;
+    padding: 110px 70px;
+}
+
+.about__title {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    margin: 0;
+    padding: 0 0 23px 0;
+}
+
+.about__info-block {
+    border-top: 1px solid #000000;
+    display: flex;
+    padding: 70px 0 100px;
+    gap: 40px;
+    justify-content: center;
+}
+
+.about__info-project {
+    margin: 0;
+    padding: 0;
+}
+
+.about__info-title {
+    margin: 0;
+    padding: 0 0 26px 0;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.8px;
+}
+
+.about__info-description {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    max-width: 550px;
+}
+
+.about__study-time {
+    display: grid;
+    grid-template-columns: minmax(100px, 228px) minmax(128px, 912px);
+    grid-template-rows: 36px 36px;
+    gap: 0;
+    justify-content: center;
+}
+
+.about__study-text {
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.about__study-text_white {
+    color: #FFF;
+    margin: 0;
+    padding: 0;
+}
+
+.about__study-text_gray {
+    margin: 14px 0 0;
+    padding: 0;
+    color: #A0A0A0;
+    max-width: 912px;
+}
+
+.about__study-line {
+    margin: 0;
+    padding: 0;
+}
+
+.about__study-line_blue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3456F3;
+}
+
+.about__study-line_grey {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F2F2F2;
+}
+
+@media screen and (max-width:768px) {
+    .about {
+        padding: 90px 50px;
+    }
+
+    .about__study-time {
+        grid-template-columns: minmax(100px, 140px) minmax(128px, 912px);
+    }    
+
+    .about__info-block {
+        gap: 30px;
+        padding: 70px 0 93px;
+    }
+
+    .about__info-title {
+        padding: 0 0 22px 0;
+    }
+    
+}
+
+@media screen and (max-width:425px) {
+    .about {
+        padding: 70px 18px;
+    }
+
+    .about__study-time {
+        grid-template-columns: 100px minmax(128px, 912px);
+        grid-template-rows: 35px 35px;
+    }    
+
+
+    .about__title {
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: -0.72px;
+        margin: 0;
+        padding: 0 0 28px 0;
+    }
+
+    .about__info-block {
+        gap: 56px;
+        flex-flow: column;
+        padding: 60px 0;
+    }
+
+    .about__info-title {
+        padding: 0 0 16px 0;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: -0.72px;
+    }
+
+    .about__info-description {
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+
+    .about__study-text {
+        font-size: 11px;
+        font-weight: 400;
+        line-height: normal;
+    }
+}

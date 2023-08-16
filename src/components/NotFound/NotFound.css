@@ -1,0 +1,39 @@
+.notfound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FFF;
+}
+
+.notfound__title {
+    margin: 246px 0 0 0;
+    padding: 0;
+    text-align: center;
+    font-size: 140px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.notfound__description {
+    margin: 5px 0 0 0;
+    padding: 0;
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.notfound__btn {
+    margin: 184px 0 60px 0;
+    padding: 0;
+    color: #3456F3;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: none;
+    border: none;
+    text-decoration: none;
+}

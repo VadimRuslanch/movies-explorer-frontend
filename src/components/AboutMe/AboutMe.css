@@ -1,0 +1,166 @@
+.reseme {
+    background: #FAFAFA;
+    padding: 110px 70px 100px;
+}
+
+.reseme__title {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    margin: 0;
+    padding: 0 0 23px 0;
+}
+
+.reseme__info-block {
+    border-top: 1px solid #000000;
+    display: flex;
+    justify-content: space-between;
+    padding: 66px 0 0;
+}
+
+.reseme__name {
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -2px;
+    padding-bottom: 18px;
+    margin: 0;
+}
+
+.reseme__profession {
+    margin: 0;
+    padding-bottom: 26px;
+    color: #000;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.reseme__about {
+    margin: 0;
+    padding-bottom: 99px;
+    max-width: 600px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.reseme__link {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.reseme__link:hover{
+    opacity: 0.7;
+    transition: opacity 0.2s linear;
+}
+
+
+.reseme__avatar {
+    width: 270px;
+    height: 327px;
+    border-radius: 10px;
+}
+
+
+@media screen and (max-width:768px) {
+    .reseme {
+        padding: 90px 50px;
+    }
+
+    .reseme__avatar {
+        width: 255px;
+        height: 307px;
+        border-radius: 10px;
+    }
+
+    .reseme__name {
+        font-size: 40px;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -1.6px;
+        padding-bottom: 16px;
+        margin: 0;
+    }
+
+    .reseme__profession {
+        padding-bottom: 20px;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px;
+    }
+
+    .reseme__about {
+        padding-bottom: 87px;
+        max-width: 364px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+}
+
+@media screen and (max-width:425px) {
+    .reseme {
+        padding: 70px 14px;
+    }
+
+    .reseme__title {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+        margin: 0;
+        padding: 0 0 28px 0;
+    }
+
+    .reseme__info-block {
+        display: flex;
+        flex-direction: column-reverse;
+        padding-top: 60px;
+    }
+
+    .reseme__avatar {
+        width: 292px;
+        height: 352px;
+        border-radius: 10px;
+    }
+
+    .reseme__name {
+        font-size: 30px;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -2px;
+        padding: 40px 0 20px;
+    }
+
+    .reseme__profession {
+        margin: 0;
+        padding-bottom: 20px;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+    }
+
+    .reseme__about {
+        margin: 0;
+        padding-bottom: 40px;
+        max-width: 600px;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+}
