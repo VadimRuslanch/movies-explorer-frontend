@@ -6,10 +6,8 @@ export default function Profile({ headerProfile, onSidePane }) {
             <Header
                 headerMain={headerProfile}
                 onSidePane={onSidePane} />
-            <div className="profile">
+            <main className="profile">
                 <h2 className="profile__title">Привет, Виталий!</h2>
-
-
                 <form className="profile__form">
                     <div className="profile__inputs">
                         <p className="profile__text">Имя</p>
@@ -28,10 +26,8 @@ export default function Profile({ headerProfile, onSidePane }) {
                     </div>
                     <button className="profile__edit-btn">Редактировать</button>
                 </form>
-
-
                 <button className="profile__signout">Выйти из аккаунта</button>
-            </div>
+            </main>
         </>
     )
 }

@@ -1,33 +1,30 @@
 import iconSeach from "../../images/icon-seach.svg";
 
-export default function SearchForm() {
+export default function SearchForm({ onFilterButtone, isFilterButtone }) {
     return (
-        <div className="search-movies">
-            <div className="form">
-                <form className="form__search">
-                    <div className="form__search-icon">
-                        <img className="form__icon" alt="Иконка лупа" src={iconSeach} />
+        <section className="search">
+            <div className="search__form">
+                <form className="search__field">
+                    <div className="search__internalGroup">
+                        <img className="search__control" alt="Иконка лупа" src={iconSeach} />
                         <input
-                            className="form__input"
-                            type="films"
+                            className="search__input"
+                            type="text"
                             name="films"
                             placeholder="Фильмы"
                             required />
                     </div>
-
-                    <button className="form__button-find" />
+                    <button className="search__icon" />
                 </form>
-                <div className="form__filter form__filter_desktop">
-                    <button className="form__filter-button" />
-                    <p className="form__filter-text">Короткометражки</p>
+                <div className="search__filter search__filter_desktop">
+                    <button type="button" onClick={onFilterButtone} className={`search__filter-button ${isFilterButtone ? "search__filter-button_active" : ""}`} />
+                    <p className="search__filter-text">Короткометражки</p>
                 </div>
             </div>
-            <div className="form__filter form__filter_mobile">
-                <button className="form__filter-button" />
-                <p className="form__filter-text">Короткометражки</p>
+            <div className="search__filter search__filter_mobile">
+                <button type="button" onClick={onFilterButtone} className={`search__filter-button ${isFilterButtone ? "search__filter-button_active" : ""}`} />
+                <p className="search__filter-text">Короткометражки</p>
             </div>
-        </div>
-
-
+        </section>
     )
 }

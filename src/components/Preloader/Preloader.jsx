@@ -1,7 +1,7 @@
 export default function Preloader() {
     return (
-        <div className="preloader">
+        <section className="preloader">
             <button className="preloader__bnt">Ещё</button>
-        </div>
+        </section>
     )
 }

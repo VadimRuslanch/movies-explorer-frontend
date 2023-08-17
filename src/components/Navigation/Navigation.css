@@ -40,7 +40,7 @@
     margin-top: 159px;
 }
 
-.navigation__menu-link {
+.navigation__link-menu {
     color: #000;
     font-size: 18px;
     font-style: normal;
@@ -49,25 +49,58 @@
     text-decoration: none;
     padding: 0 0 4px 0;
     margin: 0 0 24px 0;
+
 }
 
-.navigation__menu-link_border {
-    border-bottom: 2px solid rgba(0, 0, 0, 1);
+.navigation__link-menu_active {
+    border-bottom: 2px solid rgba(0, 0, 0, 1);  
+
 }
 
-.navigation__btn-profile_side-panel {
-    margin-bottom: 90px;
+.navigation__btn-profile {
+    width: 96px;
+    height: 28px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    text-decoration: none;
+    border-radius: 50px;
+    border: 2px solid rgba(170, 170, 170, 0.2);
 }
 
+.navigation__icon-profile {
+    width: 12px;
+    height: 14px;
+    margin: 7px 0 7px 10px;
+    padding: 0;
+    border: none;
+    background: url(../../images/icon-profile.svg);
+
+}
+
+.navigation__text-profile {
+    color: #000;
+    margin: 7px 0 7px 7px;
+    padding: 0;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+
+/* Кнопка закрытия(крестик) */
 
 .navigation__btn-close {
     border: none;
     position: absolute;
     right: 22px;
     top: 22px;
-    width: 22px;
+    width: 32px;
+    height: 32px;
     padding: 0;
     margin: 0;
+    background: none;
 }
 
 .navigation__btn-close::after,
@@ -76,12 +109,10 @@
     display: block;
     box-sizing: border-box;
     position: absolute;
-    width: 22px;
-    height: 2px;
+    width: 32px;
+    height: 3px;
     background: currentColor;
     transform: rotate(45deg);
-    top: 8px;
-    left: 1px
 }
 
 .navigation__btn-close::after {
@@ -95,6 +126,7 @@
     .navigation__side-panel {
         width: 100%;
     }
+
     .navigation__menu {
         margin-top: 144px;
     }

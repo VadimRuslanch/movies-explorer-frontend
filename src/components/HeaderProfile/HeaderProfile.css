@@ -1,48 +1,33 @@
-.header-nav {
+.header__screen{
     display: flex;
     align-items: center;
+}
+
+.header__profile {
     padding: 0;
-    margin: 0;
+    margin-right: calc((100vw - 769px)/(1280 - 769) * (746 - 235) + 235px);
 }
 
-.header-nav_mobile {
-    display: none;
-}
-
-.header-nav__btn-menu_mobile{
-    display: none;
-}
-
-.header-nav__logo {
-    display: block;
-    margin: 0;
-    padding: 0;
-    width: 38px;
-    height: 38px;
-    text-decoration: none;
-    background: url(../../images/logo-header.svg);
-}
-
-.header-nav__link {
+.header__link-profile {
     color: #000;
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
     line-height: 18px;
     text-decoration: none;
-    margin: 0 16px 0 44px;
+    margin: 0 16px 0 0;
     padding: 0;
 }
 
-.header-nav__link_active{
+.header__link-profile_active {
     font-weight: 500;
 }
 
-.header-nav__link:last-of-type {
-    margin: 0 16px 0 0px;
+.header__link-profile:last-of-type {
+    margin: 0;
 }
 
-.header-nav__btn-profile {
+.header__btn-profile {
     width: 96px;
     height: 28px;
     margin: 0;
@@ -53,17 +38,17 @@
     border: 2px solid rgba(170, 170, 170, 0.2);
 }
 
-.header-nav__icon-profile {
+.header__icon-profile {
     width: 12px;
     height: 14px;
     margin: 7px 0 7px 10px;
     padding: 0;
     border: none;
-        background: url(../../images/icon-profile.svg);
+    background: url(../../images/icon-profile.svg);
 
 }
 
-.header-nav__text-profile {
+.header__text-profile {
     color: #000;
     margin: 7px 0 7px 7px;
     padding: 0;
@@ -73,28 +58,42 @@
     line-height: 16px;
 }
 
-.header-nav__btn-menu {
+
+
+/* Кнопка боковой панели для мобильной версии*/
+
+.header__btn-menu {
     width: 44px;
     height: 44px;
     border: none;
     background: url(../../images/icon-menu.svg);
 }
 
+.header__btn-menu_mobile {
+    display: none;
+}
+
+
+
+
+@media screen and (min-width:1280px) {
+    .header__profile {
+        margin-right: 746px;
+    }
+}
+
 @media screen and (max-width:768px) {
-    .header-nav_desktop {
+    .header__screen_desktop {
         display: none;
     }
 
-    .header-nav__btn-profile_desktop {
+    /* .header__btn-profile_desktop {
         display: none;
-    }
+    } */
 
-    .header-nav_mobile {
+    .header__btn-menu_mobile {
         display: flex;
     }
-    .header-nav__btn-menu_mobile{
-        display: flex;
-    }   
 }
 
 @media screen and (max-width:425px) {}

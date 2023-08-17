@@ -1,10 +1,10 @@
-.search-movies {
+.search {
     background: #FAFAFA;
     padding: 70px;
     border-bottom: 1px solid #E8E8E8;
 }
 
-.form {
+.search__form {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,26 +15,26 @@
     padding: 0 30px 0 20px;
 }
 
-.form__search {
+.search__field {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 }
 
-.form__search-icon {
+.search__internalGroup {
     display: flex;
     align-items: center;
     width: 85%;
 }
 
-.form__icon {
+.search__control {
     height: 34px;
     width: 34px;
     margin-right: 10px;
 }
 
-.form__input {
+.search__input {
     width: 100%;
     height: 22px;
     padding: 0;
@@ -48,7 +48,12 @@
     box-sizing: border-box
 }
 
-.form__button-find {
+.search__input:focus {
+    outline: rgba(182, 130, 250, 0.1) solid 2px;
+    border-radius: 5px;
+}
+
+.search__icon {
     padding: 0;
     border: none;
     height: 34px;
@@ -56,9 +61,12 @@
     background: url(../../images/icon-find.svg);
 }
 
+.search__icon:hover {
+    opacity: 0.8;
+    transition: opacity 0.2s linear;
+}
 
-
-.form__filter {
+.search__filter {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -68,20 +76,25 @@
     border-left: 1px solid #CBCBCB;
 }
 
-.form__filter_mobile {
+.search__filter_mobile {
     display: none;
 }
 
-.form__filter-button {
+.search__filter-button {
     border: none;
-    background: url(../../images/smalltumb.svg);
+    background: url(../../images/smallTumbDis.svg);
     width: 34px;
     height: 14px;
     margin: 0;
     padding: 0;
 }
 
-.form__filter-text {
+.search__filter-button_active {
+    background: url(../../images/smallTumbActive.svg);
+}
+
+
+.search__filter-text {
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
@@ -91,25 +104,25 @@
 }
 
 @media screen and (max-width:768px) {
-    .search-movies {
+    .search {
         padding: 80px 30px 110px;
     }
 }
 
 
 @media screen and (max-width:540px) {
-    .form__filter {
+    .search__filter {
         gap: 13px;
         border-left: none;
         margin: 46px 0 0 0;
         padding: 0;
     }
 
-    .form__filter_desktop {
+    .search__filter_desktop {
         display: none;
     }
 
-    .form__filter_mobile {
+    .search__filter_mobile {
         display: flex;
         justify-content: center;
     }
@@ -117,16 +130,16 @@
 }
 
 @media screen and (max-width:425px) {
-    .search-movies {
+    .search {
         padding: 80px 10px 45px;
     }
 
-    .form {
+    .search__form {
         padding: 0 20px;
     }
 
 
-    .form__icon {
+    .search__control {
         display: none;
     }
 

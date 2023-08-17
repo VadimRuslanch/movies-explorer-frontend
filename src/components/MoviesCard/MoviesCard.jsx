@@ -1,7 +1,4 @@
-// import btnSaveActive from "../../images/saveBtnAct.svg"
-import btnSaveDis from "../../images/saveBtnDis.svg"
 import photo from "../../images/pic-color-pic.png"
-
 
 export default function MoviesCard() {
     return (
@@ -9,7 +6,7 @@ export default function MoviesCard() {
             <img
                 className="movie__img"
                 src={photo}
-                alt="men"
+                alt="menu"
             />
             <div className="movie__inner">
                 <div className="movie__inner-info">
@@ -18,9 +15,7 @@ export default function MoviesCard() {
                     </p>
                     <p className="movie__inner-time">1ч42м</p>
                 </div>
-                <button className="movie__inner-bnt" >
-                    <img className="movie__inner-img" alt="" src={btnSaveDis} />
-                </button >
+                <button className="movie__inner-bnt" />
             </div>
         </article>
 

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import iconProfile from "../../images/icon-profile.svg";
 
-export default function Navigation({ isOpen, onClose, onSidePane }) {
+export default function Navigation({ isOpen, onClose, ActiveButtoneMovies, ActiveButtoneSaveMovies }) {
     useEffect(() => {
         if (!isOpen) return
         const closeByEscape = (e) => {
@@ -20,23 +19,32 @@ export default function Navigation({ isOpen, onClose, onSidePane }) {
 
     return (
         <>
-            <div
+            <section
                 className={`navigation ${isOpen ? "navigation_opened" : ""}`}
                 onClick={handleOverlay}
             >
                 <div className="navigation__side-panel">
                     <button className="navigation__btn-close" onClick={onClose}></button>
                     <div className="navigation__menu">
-                        <Link className="navigation__menu-link" to="/">Главная</Link>
-                        <Link className={`navigation__menu-link ${"navigation__menu-link_border"}`} to="/movies">Фильмы</Link>
-                        <Link className="navigation__menu-link" to="/saved-movies">Сохранённые фильмы</Link>
+                        <Link
+                            className={`navigation__link-menu`}
+                            to="/"
+                        >Главная</Link>
+                        <Link
+                            className={`navigation__link-menu ${ActiveButtoneMovies ? "navigation__link-menu_active" : ""}`}
+                            to="/movies"
+                        >Фильмы</Link>
+                        <Link
+                            className={`navigation__link-menu ${ActiveButtoneSaveMovies ? "navigation__link-menu_active" : ""}`}
+                            to="/saved-movies"
+                        >Сохранённые фильмы</Link>
                     </div>
-                    <Link className="header-nav__btn-profile navigation__btn-profile_side-panel" to="/profile">
-                        <img className="header-nav__icon-profile" alt="Логотип профиль" src={iconProfile} />
-                        <p className="header-nav__text-profile">Аккаунт</p>
+                    <Link className="navigation__btn-profile" to="/profile">
+                        <div className="navigation__icon-profile" />
+                        <p className="navigation__text-profile">Аккаунт</p>
                     </Link>
                 </div>
-            </div>
+            </section>
         </>
     )
 }

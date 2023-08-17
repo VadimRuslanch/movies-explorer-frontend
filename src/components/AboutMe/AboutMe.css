@@ -1,9 +1,18 @@
-.reseme {
+.resume {
     background: #FAFAFA;
     padding: 110px 70px 100px;
 }
 
-.reseme__title {
+.resume__block {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #000000;
+    padding: 66px 0 0;
+    gap: 20px;
+}
+
+.resume__title {
+    display: inline-block;
     font-size: 22px;
     font-style: normal;
     font-weight: 400;
@@ -13,14 +22,13 @@
     padding: 0 0 23px 0;
 }
 
-.reseme__info-block {
-    border-top: 1px solid #000000;
+.resume__description {
     display: flex;
-    justify-content: space-between;
-    padding: 66px 0 0;
+    flex-flow: column;
 }
 
-.reseme__name {
+.resume__name {
+    display: inline-block;
     font-size: 50px;
     font-style: normal;
     font-weight: 400;
@@ -30,7 +38,8 @@
     margin: 0;
 }
 
-.reseme__profession {
+.resume__profession {
+    display: inline-block;
     margin: 0;
     padding-bottom: 26px;
     color: #000;
@@ -42,7 +51,8 @@
     line-height: 20px;
 }
 
-.reseme__about {
+.resume__about {
+    display: inline-block;
     margin: 0;
     padding-bottom: 99px;
     max-width: 600px;
@@ -52,7 +62,8 @@
     line-height: 22px;
 }
 
-.reseme__link {
+.resume__link {
+    display: inline-block;
     margin: 0;
     padding: 0;
     color: #000;
@@ -63,13 +74,13 @@
     text-decoration: none;
 }
 
-.reseme__link:hover{
+.resume__link:hover {
     opacity: 0.7;
     transition: opacity 0.2s linear;
 }
 
 
-.reseme__avatar {
+.resume__avatar {
     width: 270px;
     height: 327px;
     border-radius: 10px;
@@ -77,17 +88,16 @@
 
 
 @media screen and (max-width:768px) {
-    .reseme {
+    .resume {
         padding: 90px 50px;
     }
 
-    .reseme__avatar {
-        width: 255px;
-        height: 307px;
-        border-radius: 10px;
+    .resume__avatar {
+        max-width: 255px;
+        max-height: 307px;
     }
 
-    .reseme__name {
+    .resume__name {
         font-size: 40px;
         font-weight: 400;
         line-height: normal;
@@ -96,7 +106,7 @@
         margin: 0;
     }
 
-    .reseme__profession {
+    .resume__profession {
         padding-bottom: 20px;
         font-size: 12px;
         font-style: normal;
@@ -104,7 +114,7 @@
         line-height: 18px;
     }
 
-    .reseme__about {
+    .resume__about {
         padding-bottom: 87px;
         max-width: 364px;
         font-size: 12px;
@@ -114,31 +124,37 @@
 
 }
 
-@media screen and (max-width:425px) {
-    .reseme {
+@media screen and (max-width:550px) {
+    .resume {
         padding: 70px 14px;
     }
 
-    .reseme__title {
+    .resume__title {
         font-size: 18px;
         letter-spacing: -0.72px;
         margin: 0;
         padding: 0 0 28px 0;
     }
 
-    .reseme__info-block {
+    .resume__block {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 0;
+    }
+
+    /* .resume__info {
         display: flex;
         flex-direction: column-reverse;
         padding-top: 60px;
-    }
+    } */
 
-    .reseme__avatar {
+    .resume__avatar {
         width: 292px;
         height: 352px;
         border-radius: 10px;
     }
 
-    .reseme__name {
+    .resume__name {
         font-size: 30px;
         font-weight: 400;
         line-height: normal;
@@ -146,7 +162,7 @@
         padding: 40px 0 20px;
     }
 
-    .reseme__profession {
+    .resume__profession {
         margin: 0;
         padding-bottom: 20px;
         font-size: 11px;
@@ -155,7 +171,7 @@
         line-height: 16px;
     }
 
-    .reseme__about {
+    .resume__about {
         margin: 0;
         padding-bottom: 40px;
         max-width: 600px;

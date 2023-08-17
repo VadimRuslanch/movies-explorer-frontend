@@ -19,7 +19,6 @@
 .profile__form {
     display: flex;
     flex-direction: column;
-    /* max-width: 410px; */
     width: 100%;
     max-width: 410px;
 }
@@ -42,7 +41,6 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    /* margin: 17px 0 16px 0; */
     padding: 0;
 }
 
@@ -58,14 +56,11 @@
     margin: 17px 0 16px 0;
     padding: 0;
     outline: navajowhite
-    /* outline: rgba(191, 15, 153, 0.1) solid 1px; */
-    /* border-radius: 5px; */
 }
 
 .profile__input:focus {
-    outline: inset thick rgba(191, 15, 153, 0.2) solid 1px;
+    outline: rgba(182, 130, 250, 0.1) solid 2px;
     border-radius: 5px;
-    background-color: rgba(191, 15, 153, 0.1);
 }
 
 .profile__edit-btn {

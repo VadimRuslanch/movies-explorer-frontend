@@ -8,16 +8,18 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
-import Navigation from '../Navigation/Navigation';
-
 
 export default function App() {
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
-  // const [isActiveButtone, setIsActiveButtone] = useState(false);
+  const [isFilterButtone, setIsFilterButtone] = useState(false);
 
-  // const handelActiveButtone = ()=>{
-  //   setIsActiveButtone(true);
-  // }
+  const handelButtonFilter = () => {
+    if (isFilterButtone) {
+      setIsFilterButtone(false);
+    } else {
+      setIsFilterButtone(true);
+    }
+  }
 
   const handelSidePanelOpen = () => {
     setIsSidePanelOpen(true);
@@ -38,15 +40,25 @@ export default function App() {
         />
         <Route
           path='/movies'
-          element={<Movies
-            onSidePane={handelSidePanelOpen}
-          />}
+          element={
+            <Movies
+              isOpen={isSidePanelOpen}
+              onClose={closeAllPopups}
+              onSidePane={handelSidePanelOpen}
+              onFilterButtone={handelButtonFilter}
+              isFilterButtone={isFilterButtone}
+            />}
         />
         <Route
           path='/saved-movies'
-          element={<SavedMovies
-            onSidePane={handelSidePanelOpen}
-          />}
+          element={
+            <SavedMovies
+              isOpen={isSidePanelOpen}
+              onClose={closeAllPopups}
+              onSidePane={handelSidePanelOpen}
+              onFilterButtone={handelButtonFilter}
+              isFilterButtone={isFilterButtone}
+            />}
         />
         <Route
           path='/profile'
@@ -68,9 +80,6 @@ export default function App() {
           element={<NotFound />}
         />
       </Routes>
-      <Navigation
-        isOpen={isSidePanelOpen}
-        onClose={closeAllPopups} />
     </>
   );
 };

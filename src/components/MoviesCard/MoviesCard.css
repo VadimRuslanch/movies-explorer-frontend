@@ -37,6 +37,7 @@
 }
 
 .movie__inner-bnt {
+    background: url(../../images/saveBtnDis.svg);
     margin: 0;
     padding: 0;
     background: none;
@@ -45,21 +46,18 @@
     height: 16px;
 }
 
-.movie__inner-img {
-    width: 16px;
-    height: 16px;
-
+.movie__inner-bnt_active {
+    background: url(../../images/saveBtnAct.svg);
 }
 
-@media screen and (max-width:768px) {
+@media screen and (min-width:758px) and (max-width:945px) {
     .movie {
-        /* width: minmax(fix-content,339px); */
         min-width: 339px;
         min-height: 257px;
     }
 }
 
-@media screen and (max-width:425px) {
+@media screen and (max-width:625px) {
     .movie {
         min-width: 300px;
         min-height: 235px;

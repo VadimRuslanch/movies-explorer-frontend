@@ -1,28 +1,17 @@
-export default function AuthForm({ btnText }) {
+export default function AuthForm({ placeholderText }) {
     return (
         <>
-            <p className="sign-form__text-name">E-mail</p>
+            <label className="auth-form__label" for="form" >{placeholderText}</label>
             <input
-                className="sign-form__input-name"
+                className="auth-form__input"
+                id="form"
                 type='email'
                 name="email"
-                minLength="2" 
-                maxLength="40" 
+                minLength="2"
+                maxLength="40"
                 required
             />
-            <span className="form__error"></span>
-            <p className="sign-form__text-name">Пароль</p>
-            <input
-                className="sign-form__input-name"
-                type="password"
-                name="password"
-                minLength="2" 
-                maxLength="40" 
-                required
-            />
-            <span className="form__error">Что то пошло не так ¯\_(ツ)_/¯</span>
-            <button className="form__btn">{btnText}</button>
-            {/* <p className="form__btn-text"></p> */}
+            <span className="auth-form__error"></span>
         </>
     )
 }
