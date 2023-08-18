@@ -1,0 +1,182 @@
+.resume {
+    background: #FAFAFA;
+    padding: 110px 70px 100px;
+}
+
+.resume__block {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #000000;
+    padding: 66px 0 0;
+    gap: 20px;
+}
+
+.resume__title {
+    display: inline-block;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    margin: 0;
+    padding: 0 0 23px 0;
+}
+
+.resume__description {
+    display: flex;
+    flex-flow: column;
+}
+
+.resume__name {
+    display: inline-block;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -2px;
+    padding-bottom: 18px;
+    margin: 0;
+}
+
+.resume__profession {
+    display: inline-block;
+    margin: 0;
+    padding-bottom: 26px;
+    color: #000;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.resume__about {
+    display: inline-block;
+    margin: 0;
+    padding-bottom: 99px;
+    max-width: 600px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.resume__link {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.resume__link:hover {
+    opacity: 0.7;
+    transition: opacity 0.2s linear;
+}
+
+
+.resume__avatar {
+    width: 270px;
+    height: 327px;
+    border-radius: 10px;
+}
+
+
+@media screen and (max-width:768px) {
+    .resume {
+        padding: 90px 50px;
+    }
+
+    .resume__avatar {
+        max-width: 255px;
+        max-height: 307px;
+    }
+
+    .resume__name {
+        font-size: 40px;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -1.6px;
+        padding-bottom: 16px;
+        margin: 0;
+    }
+
+    .resume__profession {
+        padding-bottom: 20px;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px;
+    }
+
+    .resume__about {
+        padding-bottom: 87px;
+        max-width: 364px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+}
+
+@media screen and (max-width:550px) {
+    .resume {
+        padding: 70px 14px;
+    }
+
+    .resume__title {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+        margin: 0;
+        padding: 0 0 28px 0;
+    }
+
+    .resume__block {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 0;
+    }
+
+    /* .resume__info {
+        display: flex;
+        flex-direction: column-reverse;
+        padding-top: 60px;
+    } */
+
+    .resume__avatar {
+        width: 292px;
+        height: 352px;
+        border-radius: 10px;
+    }
+
+    .resume__name {
+        font-size: 30px;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -2px;
+        padding: 40px 0 20px;
+    }
+
+    .resume__profession {
+        margin: 0;
+        padding-bottom: 20px;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+    }
+
+    .resume__about {
+        margin: 0;
+        padding-bottom: 40px;
+        max-width: 600px;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+}
