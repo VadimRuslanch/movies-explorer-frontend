@@ -12,7 +12,6 @@ export default function HeaderMovies({ onSidePane, ActiveButtoneMovies, ActiveBu
                         className={`header__link-profile ${ActiveButtoneSaveMovies ? "header__link-profile_active" : ""}`}
                         to="/saved-movies">Сохранённые фильмы</Link>
                 </nav>
-                {/* <button  /> */}
                 <Link className="header__btn-profile" to="/profile">
                     <div className="header__icon-profile" />
                     <p className="header__text-profile">Аккаунт</p>

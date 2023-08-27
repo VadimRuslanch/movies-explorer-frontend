@@ -7,11 +7,14 @@ import AboutMe from "../AboutMe/AboutMe";
 import Portfolio from "../Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
 
-export default function Main({ headerMain }) {
+export default function Main({ onSidePane, headerMain, isLoggedIn }) {
     return (
         <>
             <Header
-                headerMain={headerMain} />
+                headerMain={headerMain}
+                isLoggedIn={isLoggedIn}
+                onSidePane={onSidePane}
+            />
             <main>
                 <Promo />
                 <NavTab />

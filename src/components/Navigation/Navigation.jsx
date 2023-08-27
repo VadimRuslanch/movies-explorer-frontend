@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-export default function Navigation({ isOpen, onClose, ActiveButtoneMovies, ActiveButtoneSaveMovies }) {
+export default function Navigation({ isOpen, onClose}) {
+    const location = useLocation();
     useEffect(() => {
         if (!isOpen) return
         const closeByEscape = (e) => {
@@ -27,15 +28,15 @@ export default function Navigation({ isOpen, onClose, ActiveButtoneMovies, Activ
                     <button className="navigation__btn-close" onClick={onClose}></button>
                     <div className="navigation__menu">
                         <Link
-                            className={`navigation__link-menu`}
+                            className={`navigation__link-menu ${location.pathname === "/" ? "navigation__link-menu_active" : ""}`}
                             to="/"
                         >Главная</Link>
                         <Link
-                            className={`navigation__link-menu ${ActiveButtoneMovies ? "navigation__link-menu_active" : ""}`}
+                            className={`navigation__link-menu ${location.pathname === "/movies" ? "navigation__link-menu_active" : ""}`}
                             to="/movies"
                         >Фильмы</Link>
                         <Link
-                            className={`navigation__link-menu ${ActiveButtoneSaveMovies ? "navigation__link-menu_active" : ""}`}
+                            className={`navigation__link-menu ${location.pathname === "/saved-movies" ? "navigation__link-menu_active" : ""}`}
                             to="/saved-movies"
                         >Сохранённые фильмы</Link>
                     </div>

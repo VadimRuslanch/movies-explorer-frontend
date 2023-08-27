@@ -72,6 +72,7 @@
     line-height: normal;
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 .profile__signout {
@@ -86,6 +87,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
