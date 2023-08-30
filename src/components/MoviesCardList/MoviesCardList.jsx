@@ -39,7 +39,6 @@ export default function MoviesCardList({ seveMovie, onDeleteLike, moviesList, is
         }
     }, [location, screenWidth, desktopLarge, desktop, tablet, mobile])
 
-
     // Управления добавления количесва карточек при нажатии на кнопку "Еще" в зависимости от разрешения экрана
     const handleAddMovie = () => {
         const startLength = displayMoviesList.length;

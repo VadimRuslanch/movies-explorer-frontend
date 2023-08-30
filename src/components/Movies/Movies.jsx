@@ -13,10 +13,12 @@ export default function Movies({ saveMovie, onSidePane, onSetLike, onDeleteLike,
     const [filterMovieList, setFilterMovieList] = useState([]);
     const [isShortButtone, setIsShortButtone] = useState(false);
     const [isPreloader, setIsPreloader] = useState(false);
+    const [name, setName] = useState({ film: '' })
 
     // Сортировка масссива
     const handleSetFilterMovies = (movies, searchText, checkBoxStatus) => {
         const filterList = handleFilterMovies(movies, searchText, checkBoxStatus);
+        setName(searchText);
         if (filterList.length === 0) {
             modalWindow(true, 'Ничего не найдено');
         } else {
@@ -54,7 +56,9 @@ export default function Movies({ saveMovie, onSidePane, onSetLike, onDeleteLike,
         if (isShortButtone) {
             setIsShortButtone(false);
             localStorage.setItem(`button`, false);
-            setDisplayMoviesList(displayMoviesList);
+            if (defaultMoviesList.length !== 0) {
+                setDisplayMoviesList(displayMoviesList);
+            }
         } else {
             setIsShortButtone(true);
             localStorage.setItem(`button`, true);
