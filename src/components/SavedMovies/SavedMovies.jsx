@@ -5,18 +5,15 @@ import Footer from "../Footer/Footer";
 import { handleFilterMovies, handleShortedMovie } from '../../utils/filterMovies';
 import { useEffect, useState } from "react";
 
-
-export default function SavedMovies({ saveMovie, isLoggedIn, onDeleteLike, onSidePane }) {
+export default function SavedMovies({ saveMovie, isLoggedIn, onDeleteLike, onSidePane, modalWindow  }) {
     const [isShortButtone, setIsShortButtone] = useState(false);
     const [displayMoviesList, setDisplayMoviesList] = useState(saveMovie);
     const [filterMovieList, setFilterMovieList] = useState(displayMoviesList);
+    const [name, setName] = useState({ film: '' })
 
-    // Сортировка масссива
+    // Сохранение теста поиска
     const handleSetFilterMovies = (searchText) => {
-        localStorage.setItem('nameSaveFilm', JSON.stringify(searchText));
-        const filterList = handleFilterMovies(saveMovie, searchText.film, isShortButtone);
-        setFilterMovieList(filterList);
-        setDisplayMoviesList(filterList);
+        setName(searchText);
     };
 
     // Тумблер фильтрации короткометражек
@@ -32,20 +29,16 @@ export default function SavedMovies({ saveMovie, isLoggedIn, onDeleteLike, onSid
         };
     };
 
-    // Состояние тумблер фильтрации короткометражек
+    // Сортировка массива 
     useEffect(() => {
-        if (!JSON.parse(localStorage.getItem(`buttonSaveMovies`))) {
-            setIsShortButtone(false);
-            setDisplayMoviesList(saveMovie);
-        } else {
-            setIsShortButtone(true);
-            setDisplayMoviesList(handleShortedMovie(saveMovie));
+        const filterList = handleFilterMovies(saveMovie, name.film, isShortButtone);
+        if(filterList.length === 0){
+            modalWindow(true, 'Вы не добавили фильмы');
         }
-    }, [setDisplayMoviesList, saveMovie]);
+        setFilterMovieList(filterList);
+        setDisplayMoviesList(filterList);
+    }, [isShortButtone, name, saveMovie]);
 
-    useEffect(() => {
-        setFilterMovieList(saveMovie);
-    }, [saveMovie]);
 
     return (
         <>

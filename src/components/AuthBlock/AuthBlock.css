@@ -56,6 +56,10 @@
     margin-top: 134px;
 }
 
+.auth__button__inactive{
+    background: #a6a7a8;
+}
+
 .auth__btn:hover {
     opacity: 0.8;
     transition: opacity 0.2s linear;

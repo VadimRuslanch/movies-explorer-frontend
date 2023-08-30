@@ -8,7 +8,8 @@ class Api {
         return fetch(this._url, {
             headers: this._headers,
         })
-            .then(res => { return res.json() });
+            .then(res => { return res.json() })
+            .catch(res => { return res })
     }
 }
 

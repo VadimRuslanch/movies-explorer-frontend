@@ -7,36 +7,47 @@ import Footer from "../Footer/Footer";
 import { useEffect, useState } from 'react';
 import { handleFilterMovies, handleShortedMovie, handleTransformMovies } from '../../utils/filterMovies';
 
-export default function Movies({ saveMovie, onSidePane, onSetLike, onDeleteLike, isLoggedIn }) {
+export default function Movies({ saveMovie, onSidePane, onSetLike, onDeleteLike, isLoggedIn, modalWindow }) {
     const [defaultMoviesList, setDefaultMoviesList] = useState([]);
     const [displayMoviesList, setDisplayMoviesList] = useState([]);
     const [filterMovieList, setFilterMovieList] = useState([]);
     const [isShortButtone, setIsShortButtone] = useState(false);
     const [isPreloader, setIsPreloader] = useState(false);
 
-
     // Сортировка масссива
     const handleSetFilterMovies = (movies, searchText, checkBoxStatus) => {
-        const filterList = handleFilterMovies(movies, searchText, checkBoxStatus)
-        setFilterMovieList(filterList);
-        setDisplayMoviesList(checkBoxStatus ? handleShortedMovie(filterList) : filterList);
-        localStorage.setItem('filteredMovie', JSON.stringify(filterList));
+        const filterList = handleFilterMovies(movies, searchText, checkBoxStatus);
+        if (filterList.length === 0) {
+            modalWindow(true, 'Ничего не найдено');
+        } else {
+            setFilterMovieList(filterList);
+            localStorage.setItem('filteredMovie', JSON.stringify(filterList));
+            setDisplayMoviesList(checkBoxStatus ? handleShortedMovie(filterList) : filterList);
+        }
     };
 
     // Сабмит формы поиска
     const handleSubmitMovies = (searchText) => {
         localStorage.setItem('nameFilm', JSON.stringify(searchText));
+        if (defaultMoviesList.length === 0) {
+            getMovies(searchText)
+        } else {
+            handleSetFilterMovies(defaultMoviesList, searchText.film, isShortButtone)
+        }
+    };
+
+    // Получение списка фильмов с сервера 
+    const getMovies = (searchText) => {
         setIsPreloader(true);
         MoviesApi
             .getMoviesList()
             .then(movies => {
                 setDefaultMoviesList(movies);
-                console.log(isShortButtone);
                 handleSetFilterMovies(handleTransformMovies(movies), searchText.film, isShortButtone);
             })
             .catch()
             .finally(() => setIsPreloader(false));
-    };
+    }
 
     // Тумблер фильтрации короткометражек
     const handelShortMovie = () => {
@@ -52,14 +63,15 @@ export default function Movies({ saveMovie, onSidePane, onSetLike, onDeleteLike,
     };
 
     useEffect(() => {
-        if (!JSON.parse(localStorage.getItem(`button`))) {
-            setIsShortButtone(true);
-            setDisplayMoviesList(JSON.parse(localStorage.getItem('filteredMovie')));
-        } else {
-            setIsShortButtone(false);
-            setDisplayMoviesList(JSON.parse(localStorage.getItem('filteredMovie')));
+        if (JSON.parse(localStorage.getItem('filteredMovie'))) {
+            const saveMovies = JSON.parse(localStorage.getItem('filteredMovie'))
+            if (JSON.parse(localStorage.getItem(`button`))) {
+                setDisplayMoviesList(handleShortedMovie(saveMovies));
+            } else {
+                setDisplayMoviesList(saveMovies);
+            }
         }
-    }, [setIsShortButtone])
+    }, [])
 
     // Установка значений поиска и подгрузка массива при загружке сайа
     useEffect(() => {
@@ -81,7 +93,8 @@ export default function Movies({ saveMovie, onSidePane, onSetLike, onDeleteLike,
                 <SearchForm
                     onSubmitMovies={handleSubmitMovies}
                     onFilterButtone={handelShortMovie}
-                    isFilterButtone={isShortButtone} />
+                    isFilterButtone={isShortButtone}
+                />
                 <MoviesCardList
                     seveMovie={saveMovie}
                     moviesList={displayMoviesList}

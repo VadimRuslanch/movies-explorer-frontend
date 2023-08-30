@@ -5,8 +5,8 @@ import { useLocation } from "react-router-dom";
 
 export default function SearchForm({ onSubmitMovies, onFilterButtone, isFilterButtone }) {
     const [formValue, setFormValue] = useState({ film: "" });
+    const [isErrorText, setIsErrorText] = useState(false);
     const saveInputMovies = JSON.parse(localStorage.getItem('nameFilm'));
-    const saveInputSaveMovies = JSON.parse(localStorage.getItem('nameSaveFilm'));
     const location = useLocation();
 
     const handleChange = (e) => {
@@ -16,24 +16,26 @@ export default function SearchForm({ onSubmitMovies, onFilterButtone, isFilterBu
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmitMovies(formValue);
+        if (formValue.film.length === 0) {
+            setIsErrorText(true);
+        } else {
+            setIsErrorText(false);
+            onSubmitMovies(formValue);
+        }
     };
 
     useEffect(() => {
         if (location.pathname === '/movies' && saveInputMovies) {
             setFormValue(saveInputMovies);
         }
-        if (location.pathname === '/saved-movies' && saveInputSaveMovies) {
-            setFormValue(saveInputSaveMovies)
-        }
-    }, [setFormValue]);
+    }, [location]);
 
     return (
         <section className="search">
-            <form className="search__form" onSubmit={handleSubmit}>
-                <div className="search__field" >
+            <div className="search__form" >
+                <form className="search__field" onSubmit={handleSubmit} noValidate>
+                    <img className="search__control" alt="Иконка лупа" src={iconSeach} />
                     <div className="search__internalGroup">
-                        <img className="search__control" alt="Иконка лупа" src={iconSeach} />
                         <input
                             className="search__input"
                             type="text"
@@ -41,17 +43,18 @@ export default function SearchForm({ onSubmitMovies, onFilterButtone, isFilterBu
                             placeholder="Фильмы"
                             value={formValue.film}
                             onChange={handleChange}
-                            required
                         />
+                        {isErrorText && <span className="search__input-error">Нужно ввести ключевое слово</span>}
                     </div>
                     <button type="submit" className="search__btn" />
-                </div>
+                </form>
                 <div className="search__filter search__filter_desktop">
                     <button type="submit" onClick={onFilterButtone} className={`search__filter-button ${isFilterButtone ? "search__filter-button_active" : ""}`} />
                     <p className="search__filter-text">Короткометражки</p>
                 </div>
-            </form>
+            </div>
             <FilterCheckbox onFilterButtone={onFilterButtone} isFilterButtone={isFilterButtone} />
+
         </section>
     )
 }

@@ -1,33 +1,25 @@
 import AuthBlock from "../AuthBlock/AuthBlock";
-import { useState } from "react";
+import useForm from "../../hooks/useForm";
 
 export default function Login({ onLogin }) {
-    const [formValue, setFormValue] = useState({
-        email: '',
-        password: '',
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormValue({ ...formValue, [name]: value })
-    }
+    const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const { email, password } = formValue;
-        onLogin({ email, password })
-    }
+        onLogin(enteredValues);
+    };
+
     return (
-        <>
-            <AuthBlock
-                register={false}
-                title={"Рады видеть!"}
-                buttonText={"Войти"}
-                buttonLink={"Регистрация"}
-                formValue={formValue}
-                onChange={handleChange}
-                onSubmit={handleSubmit}
-            />
-        </>
+        <AuthBlock
+            register={false}
+            title={"Рады видеть!"}
+            buttonText={"Войти"}
+            buttonLink={"Регистрация"}
+            formValue={enteredValues}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+            errors={errors}
+            isDisabled={!isFormValid}
+        />
     );
 };

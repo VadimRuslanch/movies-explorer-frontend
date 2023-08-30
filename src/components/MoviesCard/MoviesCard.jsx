@@ -36,7 +36,8 @@ export default function MoviesCard({ movie, isSave, onSetLike, onDeleteLike }) {
                     <p className="movie__inner-time">{transformDuration(movie.duration)}</p>
                 </div>
                 {location.pathname === '/movies' ?
-                    <button type="button" onClick={isSave ? handleDislikeClick : handleLikeClick} className={`movie__inner-like ${isSave ? "movie__inner-like_active" : ""}`} /> :
+                    <button type="button" onClick={isSave ? handleDislikeClick : handleLikeClick} className={`movie__inner-like ${isSave ? "movie__inner-like_active" : ""}`} />
+                    :
                     <button type="button" onClick={handleDislikeClick} className="movie__inner-close" />
                 }
 

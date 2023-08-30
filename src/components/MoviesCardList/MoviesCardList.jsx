@@ -72,7 +72,7 @@ export default function MoviesCardList({ seveMovie, onDeleteLike, moviesList, is
                     />
                 ))}
             </div>
-            {/* {location.pathname === "/movies" && displayMoviesList.length !== moviesList.length && <button onClick={handleAddMovie} className="movie__bnt">Ещё</button>} */}
+            {location.pathname === "/movies" && displayMoviesList.length !== moviesList.length && <button onClick={handleAddMovie} className="movie__bnt">Ещё</button>}
         </section>
     )
 }

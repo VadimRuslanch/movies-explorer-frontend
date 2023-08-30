@@ -12,7 +12,7 @@ class Api {
             credentials: 'include',
             body: JSON.stringify(data),
         })
-            .then(res => { return res })
+            .then(res => { return res.json() })
             .catch(res => { return res })
     };
 
@@ -24,20 +24,31 @@ class Api {
             credentials: 'include',
             body: JSON.stringify(data),
         })
-            .then(res => { return res })
+            .then(res => { return res.json() })
             .catch(res => { return res })
     };
 
     // Проверка токена пользователя для автологина
-    checkToken() {
+    getUser() {
         return fetch(`${this._url}/user/me`, {
             method: 'GET',
             headers: this._headers,
             credentials: 'include',
         })
             .then(res => { return res.json() })
-            .catch(res => { return res.json })
+            .catch(res => { return res })
     };
+
+    editUser(data) {
+        return fetch(`${this._url}/user/me`, {
+            method: 'PATCH',
+            headers: this._headers,
+            credentials: 'include',
+            body: JSON.stringify(data),
+        })
+            .then(res => { return res.json() })
+            .catch(res => { return res })
+    }
 
     // Выход из аккаунтв пользователя
     logout() {
@@ -55,8 +66,8 @@ class Api {
 };
 
 const AuthApi = new Api({
-    // url: 'http://localhost:4000',
-    url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
+    url: 'http://localhost:4000',
+    // url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
     headers: { 'Content-Type': 'application/json' },
 });
 

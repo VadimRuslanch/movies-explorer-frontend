@@ -1,4 +1,5 @@
 import { timeShortFilm } from "../utils/constants"
+import ModalWindow from "../components/ModalWindow/ModalWindow";
 
 const handleTransformMovies = (movies) => {
     movies.forEach(movie => {
@@ -37,7 +38,5 @@ const handleFilterMovies = (movies, text, shortMovieState) => {
 const handleShortedMovie = (movie) => {
     return movie.filter(list => { return list.duration < timeShortFilm })
 }
-
-
 
 export { handleShortedMovie, handleFilterMovies, handleTransformMovies };

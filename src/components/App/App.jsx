@@ -13,32 +13,51 @@ import Navigation from '../Navigation/Navigation';
 import AuthApi from '../../utils/AuthApi';
 import ProtectedRoute from '../../utils/ProtectedRoute';
 import MainApi from '../../utils/MainApi';
+import ModalWindow from '../ModalWindow/ModalWindow';
 
 export default function App() {
   const [isSidePanelOpen, setIsSidePanelOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [saveMovie, setSaveMovie] = useState([]);
+  const [isModalWindow, setIsModalWindow] = useState(false);
+  const [textModalWindow, setTextModalWindow] = useState('');
   const navigate = useNavigate();
 
+  // Проверка авторизации
   useEffect(() => {
     AuthApi
-      .checkToken()
+      .getUser()
       .then(res => {
         if (res) {
           setIsLoggedIn(true);
           setCurrentUser(res);
-          handleGetMovies();
         };
-      });
-  }, [setCurrentUser, setIsLoggedIn])
+      })
+      .catch(err => { return err });
+  }, [setCurrentUser, setIsLoggedIn]);
 
-  const handleGetMovies = () => {
+  // Получение сохраненных фильмов
+  useEffect(() => {
     MainApi
       .getMovies()
       .then(movies => {
         setSaveMovie(movies);
-      });
+      })
+      .catch(err => { return err });
+  }, [setSaveMovie]);
+
+  // Получение данных пользователя
+  const handleGetUser = () => {
+    AuthApi
+      .getUser()
+      .then(res => {
+        if (res) {
+          setIsLoggedIn(true);
+          setCurrentUser(res);
+        }
+      })
+      .catch(err => { return err });
   };
 
   // Вход в аккаунт
@@ -46,11 +65,13 @@ export default function App() {
     AuthApi
       .login(data)
       .then(res => {
-        if (res) {
+        if (res.ok) {
           setIsLoggedIn(true)
-          navigate('/');
+          handleGetUser()
+          navigate('/movies');
         }
       })
+      .catch(err => { return err });
   }
 
   // Выход из аккаунта
@@ -61,9 +82,27 @@ export default function App() {
     navigate('/');
   }
 
+  // Редактирование пользователя
+  const hadleEditUser = (data) => {
+    AuthApi.editUser(data)
+      .then((res) => {
+        setCurrentUser(data);
+        hadleModalWindow(true, "Информация успешно изменена")
+      })
+      .catch(err => { return err });
+  };
+
   // Регистрация
   const handleRegister = (data) => {
-    AuthApi.register(data)
+    AuthApi
+      .register(data)
+      .then(res => {
+        console.log(res)
+        if (res.ok) {
+          handleLogin({ email: data.email, password: data.password })
+        }
+      })
+      .catch(err => { return err });
   }
 
   // Добавление и удаление фильма в "Сохраненные"
@@ -71,13 +110,12 @@ export default function App() {
     MainApi
       .addMovie(movie)
       .then((movie) => { setSaveMovie([movie, ...saveMovie]) })
+      .catch(err => { return err });
   };
 
   // Удаление фильма из "Сохраненные"
   const handleDeleteMovie = (movie) => {
-    console.log(movie);
     const film = saveMovie.find((item) => item.id === movie.id);
-    console.log(film);
     MainApi
       .deliteMovie(film)
       .then(() => {
@@ -90,6 +128,12 @@ export default function App() {
         })
         setSaveMovie(newMovieList);
       })
+      .catch(err => { return err });
+  };
+
+  const hadleModalWindow = (isActive, text) => {
+    setIsModalWindow(isActive);
+    setTextModalWindow(text);
   }
 
   // Управление мадальными окнами
@@ -99,6 +143,7 @@ export default function App() {
 
   const closeAllPopups = () => {
     setIsSidePanelOpen(false);
+    setIsModalWindow(false);
   };
 
   return (
@@ -126,6 +171,7 @@ export default function App() {
                   onDeleteLike={handleDeleteMovie}
                   onSidePane={handleSidePanelOpen}
                   isLoggedIn={isLoggedIn}
+                  modalWindow={hadleModalWindow}
                 />
               }
             />
@@ -142,6 +188,7 @@ export default function App() {
                   isLoggedIn={isLoggedIn}
                   onDeleteLike={handleDeleteMovie}
                   onSidePane={handleSidePanelOpen}
+                  modalWindow={hadleModalWindow}
                 />
               }
             />
@@ -158,6 +205,8 @@ export default function App() {
                   headerProfile={false}
                   onSidePane={handleSidePanelOpen}
                   onLogout={handleLogout}
+                  onEditUser={hadleEditUser}
+                  modalWindow={hadleModalWindow}
                 />
               }
             />
@@ -180,6 +229,11 @@ export default function App() {
       </Routes>
       <Navigation
         isOpen={isSidePanelOpen}
+        onClose={closeAllPopups}
+      />
+      <ModalWindow
+        isActive={isModalWindow}
+        text={textModalWindow}
         onClose={closeAllPopups}
       />
     </CurrentUserContext.Provider>

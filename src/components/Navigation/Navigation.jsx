@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-export default function Navigation({ isOpen, onClose}) {
+export default function Navigation({ isOpen, onClose }) {
     const location = useLocation();
+
     useEffect(() => {
         if (!isOpen) return
         const closeByEscape = (e) => {
