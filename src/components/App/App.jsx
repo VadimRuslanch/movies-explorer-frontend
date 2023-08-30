@@ -97,7 +97,6 @@ export default function App() {
     AuthApi
       .register(data)
       .then(res => {
-        console.log(res)
         if (res.ok) {
           handleLogin({ email: data.email, password: data.password })
         }

@@ -12,7 +12,7 @@ class Api {
             credentials: 'include',
             body: JSON.stringify(data),
         })
-            .then(res => { return res.json() })
+            .then(res => { return res })
             .catch(res => { return res })
     };
 
@@ -24,7 +24,7 @@ class Api {
             credentials: 'include',
             body: JSON.stringify(data),
         })
-            .then(res => { return res.json() })
+            .then(res => { return res })
             .catch(res => { return res })
     };
 
@@ -61,13 +61,11 @@ class Api {
             credentials: 'include',
         });
     };
-
-
 };
 
 const AuthApi = new Api({
     url: 'http://localhost:4000',
-    // url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
+    //  url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
     headers: { 'Content-Type': 'application/json' },
 });
 
