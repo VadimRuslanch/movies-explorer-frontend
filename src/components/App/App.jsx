@@ -29,13 +29,13 @@ export default function App() {
     AuthApi
       .getUser()
       .then(res => {
-        if (res) {
+        if (res.email) {
           setIsLoggedIn(true);
           setCurrentUser(res);
         };
       })
       .catch(err => { return err });
-  }, [setCurrentUser, setIsLoggedIn]);
+  }, [setCurrentUser, setIsLoggedIn, navigate]);
 
   // Получение сохраненных фильмов
   useEffect(() => {

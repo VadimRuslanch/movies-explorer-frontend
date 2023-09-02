@@ -32,8 +32,8 @@ export default function SearchForm({ onSubmitMovies, onFilterButtone, isFilterBu
 
     return (
         <section className="search">
-            <div className="search__form" >
-                <form className="search__field" onSubmit={handleSubmit} noValidate>
+            <form className="search__form" onSubmit={handleSubmit} noValidate>
+                <div className="search__field" >
                     <img className="search__control" alt="Иконка лупа" src={iconSeach} />
                     <div className="search__internalGroup">
                         <input
@@ -47,12 +47,12 @@ export default function SearchForm({ onSubmitMovies, onFilterButtone, isFilterBu
                         {isErrorText && <span className="search__input-error">Нужно ввести ключевое слово</span>}
                     </div>
                     <button type="submit" className="search__btn" />
-                </form>
+                </div>
                 <div className="search__filter search__filter_desktop">
                     <button type="submit" onClick={onFilterButtone} className={`search__filter-button ${isFilterButtone ? "search__filter-button_active" : ""}`} />
                     <p className="search__filter-text">Короткометражки</p>
                 </div>
-            </div>
+            </form>
             <FilterCheckbox onFilterButtone={onFilterButtone} isFilterButtone={isFilterButtone} />
 
         </section>

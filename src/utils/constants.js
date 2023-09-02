@@ -1,4 +1,9 @@
-const timeShortFilm = 52
+const Email_settings = "^[^@\s]+@[^@\s]+\.[^@\s]+$";
+// "^[^@\s]+@[^@\s]+\.[^@\s]+$";
+
+const User_name_settings = '^[A-Za-zА-Яа-яЁё]+$';
+
+const timeShortFilm = 40
 
 const DEVICE_PARAMS = {
     desktopLarge: {
@@ -31,4 +36,4 @@ const DEVICE_PARAMS = {
     },
 }
 
-export { DEVICE_PARAMS, timeShortFilm };
+export { DEVICE_PARAMS, timeShortFilm, Email_settings, User_name_settings };

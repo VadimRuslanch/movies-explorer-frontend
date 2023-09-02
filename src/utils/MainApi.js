@@ -11,7 +11,6 @@ class Api {
             credentials: 'include'
         })
             .then(res => { return res.json() })
-            .catch(res => { return res })
     };
 
     addMovie(movie) {
@@ -21,8 +20,7 @@ class Api {
             credentials: 'include',
             body: JSON.stringify(movie)
         })
-            .then(res => { return res.json() })
-            .catch(res => { return res })
+            .then(res => { return res })
     };
 
     deliteMovie(movie) {
@@ -33,14 +31,13 @@ class Api {
             body: JSON.stringify(movie),
 
         })
-            .then(res => { return res.json() })
-            .catch(res => { return res })
+            .then(res => { return res })
     };
 }
 
 const MainApi = new Api({
-    // url: 'http://localhost:4000',
-    url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
+    url: 'http://localhost:4000',
+    // url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
     headers: { 'Content-Type': 'application/json' },
 
 })

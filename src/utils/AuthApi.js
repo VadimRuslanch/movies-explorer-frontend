@@ -13,7 +13,6 @@ class Api {
             body: JSON.stringify(data),
         })
             .then(res => { return res })
-            .catch(res => { return res })
     };
 
     // Авторизация пользователя
@@ -25,7 +24,6 @@ class Api {
             body: JSON.stringify(data),
         })
             .then(res => { return res })
-            .catch(res => { return res })
     };
 
     // Проверка токена пользователя для автологина
@@ -36,7 +34,6 @@ class Api {
             credentials: 'include',
         })
             .then(res => { return res.json() })
-            .catch(res => { return res })
     };
 
     editUser(data) {
@@ -47,7 +44,6 @@ class Api {
             body: JSON.stringify(data),
         })
             .then(res => { return res.json() })
-            .catch(res => { return res })
     }
 
     // Выход из аккаунтв пользователя
@@ -64,8 +60,8 @@ class Api {
 };
 
 const AuthApi = new Api({
-    // url: 'http://localhost:4000',
-     url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
+    url: 'http://localhost:4000',
+    //  url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
     headers: { 'Content-Type': 'application/json' },
 });
 
