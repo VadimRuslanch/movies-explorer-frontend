@@ -60,8 +60,8 @@ class Api {
 };
 
 const AuthApi = new Api({
-    url: 'http://localhost:4000',
-    //  url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
+    // url: 'http://localhost:4000',
+     url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
     headers: { 'Content-Type': 'application/json' },
 });
 

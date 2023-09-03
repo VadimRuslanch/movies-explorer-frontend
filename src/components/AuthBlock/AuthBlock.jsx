@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import AuthForm from "../AuthForm/AuthForm";
-import { Email_settings , User_name_settings} from '../../utils/constants';
 
 export default function AuthBlock({ onChange, onSubmit, formValue, register, title, buttonText, buttonLink, errors, isDisabled }) {
     return (
@@ -18,7 +17,6 @@ export default function AuthBlock({ onChange, onSubmit, formValue, register, tit
                         errors={errors.name}
                         id="nameForm"
                         htmlFor="nameForm"
-                        pattern={User_name_settings}
                     />}
                     <AuthForm
                         name="email"
@@ -29,7 +27,6 @@ export default function AuthBlock({ onChange, onSubmit, formValue, register, tit
                         errors={errors.email}
                         id="emailForm"
                         htmlFor="emailForm"
-                        pattern={Email_settings}
                     />
                     <AuthForm
                         onChange={onChange}
