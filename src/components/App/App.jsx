@@ -32,7 +32,9 @@ export default function App() {
         if (res.email) {
           setIsLoggedIn(true);
           setCurrentUser(res);
-        };
+        } else {
+          setIsLoggedIn(false);
+        }
       })
       .catch(err => { return err });
   }, [setCurrentUser, setIsLoggedIn, navigate]);
@@ -52,7 +54,7 @@ export default function App() {
     AuthApi
       .getUser()
       .then(res => {
-        if (res) {
+        if (res.email) {
           setIsLoggedIn(true);
           setCurrentUser(res);
         }
@@ -76,10 +78,13 @@ export default function App() {
 
   // Выход из аккаунта
   const handleLogout = () => {
-    AuthApi.logout();
-    setIsLoggedIn(false);
-    localStorage.clear();
-    navigate('/');
+    AuthApi.logout()
+      .then(() => {
+        localStorage.clear();
+        setIsLoggedIn(false);
+        navigate('/');
+      })
+      .catch(err => { return err })
   }
 
   // Редактирование пользователя
