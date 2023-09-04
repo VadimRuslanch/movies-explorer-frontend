@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 export default function MoviesCardList({ seveMovie, onDeleteLike, moviesList, isLike, onSetLike }) {
     const [displayMoviesList, setDisplayMoviesList] = useState([]);
-    const [optionsMoviesList, setOptionsMoviesList] = useState({ total: 12, more: 3 });
+    const [optionsMoviesList, setOptionsMoviesList] = useState({});
     const screenWidth = useScreenWidth();
     const location = useLocation();
     const { desktopLarge, desktop, tablet, mobile } = DEVICE_PARAMS;
@@ -27,7 +27,7 @@ export default function MoviesCardList({ seveMovie, onDeleteLike, moviesList, is
     // Контроль добавления количества карточек в зависимости от разрешения экрана
     useEffect(() => {
         if (location.pathname === "/movies") {
-            if (screenWidth > desktopLarge.width) {
+            if (screenWidth >= desktopLarge.width) {
                 setOptionsMoviesList(desktopLarge.cards);
             } else if (screenWidth >= desktop.width) {
                 setOptionsMoviesList(desktop.cards);
@@ -42,7 +42,7 @@ export default function MoviesCardList({ seveMovie, onDeleteLike, moviesList, is
     // Управления добавления количесва карточек при нажатии на кнопку "Еще" в зависимости от разрешения экрана
     const handleAddMovie = () => {
         const startLength = displayMoviesList.length;
-        const addedLength = startLength + optionsMoviesList.total;
+        const addedLength = startLength + optionsMoviesList.more;
         const endMovies = moviesList.length - startLength;
         if (endMovies > 0) {
             const newMoviesList = moviesList.slice(startLength, addedLength);

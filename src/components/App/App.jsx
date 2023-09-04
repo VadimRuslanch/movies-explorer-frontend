@@ -113,7 +113,8 @@ export default function App() {
   const handleSetLike = (movie) => {
     MainApi
       .addMovie(movie)
-      .then((movie) => { setSaveMovie([movie, ...saveMovie]) })
+      .then(movie => { 
+        setSaveMovie([movie, ...saveMovie]) })
       .catch(err => { return err });
   };
 

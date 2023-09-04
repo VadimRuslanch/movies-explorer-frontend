@@ -20,7 +20,7 @@ class Api {
             credentials: 'include',
             body: JSON.stringify(movie)
         })
-            .then(res => { return res })
+            .then(res => { return res.json() })
     };
 
     deliteMovie(movie) {
