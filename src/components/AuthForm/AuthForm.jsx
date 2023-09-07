@@ -1,17 +1,20 @@
-export default function AuthForm({ placeholderText }) {
+export default function AuthForm({ onChange, type, name, formValue, placeholderText, errors, id, htmlFor, pattern }) {
     return (
         <>
-            <label className="auth-form__label" for="form" >{placeholderText}</label>
+            <label className="auth-form__label" htmlFor={htmlFor} >{placeholderText}</label>
             <input
-                className="auth-form__input"
-                id="form"
-                type='email'
-                name="email"
+                onChange={onChange}
+                type={type}
+                name={name}
+                value={formValue}
+                id={id}
                 minLength="2"
                 maxLength="40"
                 required
+                className="auth-form__input"
+                pattern={pattern}
             />
-            <span className="auth-form__error"></span>
+            <span className="auth-form__error">{errors}</span>
         </>
     )
 }

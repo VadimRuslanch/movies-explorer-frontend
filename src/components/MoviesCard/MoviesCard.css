@@ -8,7 +8,11 @@
 
 .movie__img {
     width: 100%;
-    background-size: cover
+    max-width: 270px;
+    height: 151px;
+    border-top-right-radius: 9px;
+    border-top-left-radius: 9px;
+    background: cover;
 }
 
 .movie__inner {
@@ -24,6 +28,10 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 206px;
 }
 
 .movie__inner-time {
@@ -36,18 +44,27 @@
     padding: 0;
 }
 
-.movie__inner-bnt {
-    background: url(../../images/saveBtnDis.svg);
+.movie__inner-like {
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     margin: 0;
     padding: 0;
-    background: none;
-    border: none;
     width: 16px;
     height: 16px;
+    cursor: pointer;
 }
 
-.movie__inner-bnt_active {
-    background: url(../../images/saveBtnAct.svg);
+.movie__inner-like_active {
+    background-color: #2BE080;
+}
+
+.movie__inner-close {
+    border: none;
+    background: url(../../images/icon-delite-card.svg);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
 }
 
 @media screen and (min-width:758px) and (max-width:945px) {
@@ -55,11 +72,29 @@
         min-width: 339px;
         min-height: 257px;
     }
+
+    .movie__img {
+        width: 100%;
+        height: 100%;
+        max-width: 339px;
+        max-height: 190px;
+        background: cover center;
+    }
+
 }
 
-@media screen and (max-width:625px) {
+@media screen and (max-width:480px) {
     .movie {
         min-width: 300px;
         min-height: 235px;
     }
+
+    .movie__img {
+        width: 100%;
+        height: 100%;
+        max-width: 300px;
+        max-height: 168px;
+        background: cover center;
+    }
+
 }
