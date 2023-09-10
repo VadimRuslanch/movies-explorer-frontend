@@ -5,7 +5,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import Footer from "../Footer/Footer";
 import { useEffect, useState } from 'react';
-import { handleFilterMovies, handleShortedMovie, handleTransformMovies } from '../../utils/filterMovies';
+import { handleFilterMovies, handleShortedMovie, handleTransformMovies } from '../../utils/utils';
 
 export default function Movies({ saveMovie, onSidePane, onSetLike, onDeleteLike, isLoggedIn, modalWindow }) {
     const [defaultMoviesList, setDefaultMoviesList] = useState([]);
@@ -54,9 +54,8 @@ export default function Movies({ saveMovie, onSidePane, onSetLike, onDeleteLike,
         if (isShortButtone) {
             setIsShortButtone(false);
             localStorage.setItem(`button`, false);
-            if (defaultMoviesList.length !== 0) {
-                setDisplayMoviesList(defaultMoviesList);
-            }
+            const saveInputMovies = JSON.parse(localStorage.getItem('nameFilm'));
+            handleSetFilterMovies(defaultMoviesList, saveInputMovies.film, false);
         } else {
             setIsShortButtone(true);
             localStorage.setItem(`button`, true);
@@ -73,7 +72,7 @@ export default function Movies({ saveMovie, onSidePane, onSetLike, onDeleteLike,
                 setDisplayMoviesList(saveMovies);
             }
         }
-    }, [])
+    }, []);
 
     // Установка значений поиска и подгрузка массива при загружке сайа
     useEffect(() => {
@@ -91,7 +90,7 @@ export default function Movies({ saveMovie, onSidePane, onSetLike, onDeleteLike,
                 ActiveButtoneMovies={true}
                 isLoggedIn={isLoggedIn}
             />
-            <main className="movies">
+            <main className="main">
                 <SearchForm
                     onSubmitMovies={handleSubmitMovies}
                     onFilterButtone={handelShortMovie}

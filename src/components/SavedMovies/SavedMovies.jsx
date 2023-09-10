@@ -2,10 +2,10 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
-import { handleFilterMovies, handleShortedMovie } from '../../utils/filterMovies';
+import { handleFilterMovies, handleShortedMovie } from '../../utils/utils';
 import { useEffect, useState } from "react";
 
-export default function SavedMovies({ saveMovie, isLoggedIn, onDeleteLike, onSidePane, modalWindow  }) {
+export default function SavedMovies({ saveMovie, isLoggedIn, onDeleteLike, onSidePane, modalWindow }) {
     const [isShortButtone, setIsShortButtone] = useState(false);
     const [displayMoviesList, setDisplayMoviesList] = useState(saveMovie);
     const [filterMovieList, setFilterMovieList] = useState(displayMoviesList);
@@ -32,11 +32,14 @@ export default function SavedMovies({ saveMovie, isLoggedIn, onDeleteLike, onSid
     // Сортировка массива 
     useEffect(() => {
         const filterList = handleFilterMovies(saveMovie, name.film, isShortButtone);
-        if(filterList.length === 0){
+        if (filterList.length === 0) {
             modalWindow(true, 'Вы не добавили фильмы');
+            setFilterMovieList(filterList);
+            setDisplayMoviesList(filterList);
+        } else {
+            setFilterMovieList(filterList);
+            setDisplayMoviesList(filterList);
         }
-        setFilterMovieList(filterList);
-        setDisplayMoviesList(filterList);
     }, [isShortButtone, name, saveMovie]);
 
 
@@ -47,7 +50,7 @@ export default function SavedMovies({ saveMovie, isLoggedIn, onDeleteLike, onSid
                 ActiveButtoneSaveMovies={true}
                 isLoggedIn={isLoggedIn}
             />
-            <main className="saved-movies">
+            <main className="main">
                 <SearchForm
                     onSubmitMovies={handleSetFilterMovies}
                     onFilterButtone={handelShortMovie}

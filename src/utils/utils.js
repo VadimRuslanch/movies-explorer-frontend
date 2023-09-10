@@ -1,5 +1,11 @@
-import { timeShortFilm } from "../utils/constants"
-import ModalWindow from "../components/ModalWindow/ModalWindow";
+import { timeShortFilm } from "./constants";
+
+const checkResponse = (res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res}`);
+  };
 
 const handleTransformMovies = (movies) => {
     movies.forEach(movie => {
@@ -39,4 +45,4 @@ const handleShortedMovie = (movie) => {
     return movie.filter(list => { return list.duration < timeShortFilm })
 }
 
-export { handleShortedMovie, handleFilterMovies, handleTransformMovies };
+export { handleShortedMovie, handleFilterMovies, handleTransformMovies, checkResponse };

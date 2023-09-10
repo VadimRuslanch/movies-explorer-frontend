@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 import Main from '../Main/Main';
@@ -12,7 +12,6 @@ import NotFound from '../NotFound/NotFound';
 import Navigation from '../Navigation/Navigation';
 import AuthApi from '../../utils/AuthApi';
 import ProtectedRoute from '../../utils/ProtectedRoute';
-import MainApi from '../../utils/MainApi';
 import ModalWindow from '../ModalWindow/ModalWindow';
 
 export default function App() {
@@ -23,6 +22,9 @@ export default function App() {
   const [isModalWindow, setIsModalWindow] = useState(false);
   const [textModalWindow, setTextModalWindow] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const path = location.pathname;
+
 
   // Проверка авторизации
   useEffect(() => {
@@ -35,13 +37,14 @@ export default function App() {
         } else {
           setIsLoggedIn(false);
         }
+        navigate(path);
       })
       .catch(err => { return err });
-  }, [setCurrentUser, setIsLoggedIn, navigate]);
+  }, []);
 
   // Получение сохраненных фильмов
   useEffect(() => {
-    MainApi
+    AuthApi
       .getMovies()
       .then(movies => {
         setSaveMovie(movies);
@@ -64,12 +67,11 @@ export default function App() {
 
   // Вход в аккаунт
   const handleLogin = (data) => {
-    AuthApi
-      .login(data)
+    AuthApi.login(data)
       .then(res => {
-        if (res.ok) {
+        if (res) {
           setIsLoggedIn(true)
-          handleGetUser()
+          setCurrentUser(res);
           navigate('/movies');
         }
       })
@@ -102,7 +104,7 @@ export default function App() {
     AuthApi
       .register(data)
       .then(res => {
-        if (res.ok) {
+        if (res) {
           handleLogin({ email: data.email, password: data.password })
         }
       })
@@ -111,17 +113,18 @@ export default function App() {
 
   // Добавление и удаление фильма в "Сохраненные"
   const handleSetLike = (movie) => {
-    MainApi
+    AuthApi
       .addMovie(movie)
-      .then(movie => { 
-        setSaveMovie([movie, ...saveMovie]) })
+      .then(movie => {
+        setSaveMovie([movie, ...saveMovie])
+      })
       .catch(err => { return err });
   };
 
   // Удаление фильма из "Сохраненные"
   const handleDeleteMovie = (movie) => {
     const film = saveMovie.find((item) => item.id === movie.id);
-    MainApi
+    AuthApi
       .deliteMovie(film)
       .then(() => {
         const newMovieList = saveMovie.filter(film => {
@@ -219,13 +222,29 @@ export default function App() {
         />
         <Route
           path='/signin'
-          element={<Login
-            onLogin={handleLogin} />}
+          element={
+            <ProtectedRoute
+              isLoggedIn={!isLoggedIn}
+              element={
+                <Login
+                  onLogin={handleLogin}
+                />
+              }
+            />
+          }
         />
         <Route
           path='/signup'
-          element={<Register
-            onRegister={handleRegister} />}
+          element={
+            <ProtectedRoute
+              isLoggedIn={!isLoggedIn}
+              element={
+                <Register
+                  onRegister={handleRegister}
+                />
+              }
+            />
+          }
         />
         <Route
           path='/*'
