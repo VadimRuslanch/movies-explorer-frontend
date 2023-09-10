@@ -4,12 +4,17 @@ class Api {
         this._headers = headers;
     }
 
+    // проверка статуса запроса
+    async _requestResult(res) {
+        const result = await res.json();
+        return res.ok ? result : Promise.reject(result.message);
+    };
+
     getMoviesList() {
         return fetch(this._url, {
             headers: this._headers,
         })
-            .then(res => { return res.json() })
-            .catch(res => { return res })
+            .then(res => this._requestResult(res));
     }
 }
 

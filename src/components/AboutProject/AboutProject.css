@@ -94,10 +94,17 @@
     background: #F2F2F2;
 }
 
-@media screen and (max-width:768px) {
+@media (min-width:320px) and (max-width:1280px) {
     .about {
-        padding: 90px 50px;
+        padding-right: calc((100vw - 320px)/(1280 - 320) * (70 - 18) + 18px);
+        padding-left: calc((100vw - 320px)/(1280 - 320) * (70 - 18) + 18px);
     }
+}
+
+@media screen and (max-width:768px) {
+    /* .about {
+        padding: 90px 50px;
+    } */
 
     .about__study-time {
         grid-template-columns: minmax(100px, 140px) minmax(128px, 912px);
@@ -115,9 +122,9 @@
 }
 
 @media screen and (max-width:425px) {
-    .about {
+    /* .about {
         padding: 70px 18px;
-    }
+    } */
 
     .about__study-time {
         grid-template-columns: 100px minmax(128px, 912px);

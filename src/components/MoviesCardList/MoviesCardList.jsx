@@ -11,18 +11,17 @@ export default function MoviesCardList({ seveMovie, onDeleteLike, moviesList, is
     const location = useLocation();
     const { desktopLarge, desktop, tablet, mobile } = DEVICE_PARAMS;
 
-
     // Контроль отображения количества карточек в зависимости от разрешения экрана
     useEffect(() => {
-        if (moviesList) {
+        if (location.pathname === "/movies") {
             const lengthMoviesList = moviesList.filter((item, i) => {
                 return i < optionsMoviesList.total;
             });
-
             setDisplayMoviesList(lengthMoviesList);
+        } else {
+            setDisplayMoviesList(moviesList);
         }
     }, [moviesList, optionsMoviesList]);
-
 
     // Контроль добавления количества карточек в зависимости от разрешения экрана
     useEffect(() => {
@@ -73,5 +72,5 @@ export default function MoviesCardList({ seveMovie, onDeleteLike, moviesList, is
             </div>
             {location.pathname === "/movies" && displayMoviesList.length !== moviesList.length && <button onClick={handleAddMovie} className="movie__bnt">Ещё</button>}
         </section>
-    )
-}
+    );
+};

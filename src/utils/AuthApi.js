@@ -4,6 +4,12 @@ class Api {
         this._headers = headers;
     };
 
+    // проверка статуса запроса
+    async _requestResult(res) {
+        const result = await res.json();
+        return res.ok ? result : Promise.reject(result.message);
+    };
+
     // Регистрация пользователя
     register(data) {
         return fetch(`${this._url}/signup`, {
@@ -12,7 +18,7 @@ class Api {
             credentials: 'include',
             body: JSON.stringify(data),
         })
-            .then(res => { return res })
+            .then(res => { return this._requestResult(res) })
     };
 
     // Авторизация пользователя
@@ -23,7 +29,7 @@ class Api {
             credentials: 'include',
             body: JSON.stringify(data),
         })
-            .then(res => { return res })
+            .then(res => { return this._requestResult(res) })
     };
 
     // Проверка токена пользователя для автологина
@@ -33,7 +39,7 @@ class Api {
             headers: this._headers,
             credentials: 'include',
         })
-            .then(res => { return res.json() })
+            .then(res => this._requestResult(res))
     };
 
     editUser(data) {
@@ -43,7 +49,7 @@ class Api {
             credentials: 'include',
             body: JSON.stringify(data),
         })
-            .then(res => { return res.json() })
+            .then(res => this._requestResult(res))
     }
 
     // Выход из аккаунтв пользователя
@@ -57,11 +63,44 @@ class Api {
             credentials: 'include',
         });
     };
+
+    //Подтягивание карточек с сервера
+    getMovies() {
+        return fetch(`${this._url}/movies/`, {
+            method: 'GET',
+            headers: this._headers,
+            credentials: 'include'
+        })
+            .then(res => this._requestResult(res))
+    };
+
+    // Добавление нового фильма
+    addMovie(movie) {
+        return fetch(`${this._url}/movies/`, {
+            method: 'POST',
+            headers: this._headers,
+            credentials: 'include',
+            body: JSON.stringify(movie)
+        })
+            .then(res => this._requestResult(res))
+    };
+
+    // Удаление фильма
+    deliteMovie(movie) {
+        return fetch(`${this._url}/movies/${movie.id}/`, {
+            method: "DELETE",
+            headers: this._headers,
+            credentials: 'include',
+            body: JSON.stringify(movie),
+
+        })
+            .then(res => this._requestResult(res))
+    };
 };
 
 const AuthApi = new Api({
-    // url: 'http://localhost:4000',
-     url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
+    url: 'http://localhost:4000',
+    //  url: 'https://api.vadim-lebedev.movies.nomoreparties.co',
     headers: { 'Content-Type': 'application/json' },
 });
 

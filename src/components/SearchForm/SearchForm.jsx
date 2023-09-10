@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import iconSeach from "../../images/icon-seach.svg";
 import { useLocation } from "react-router-dom";
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 export default function SearchForm({ onSubmitMovies, onFilterButtone, isFilterButtone }) {
     const [formValue, setFormValue] = useState({ film: "" });
@@ -12,7 +11,7 @@ export default function SearchForm({ onSubmitMovies, onFilterButtone, isFilterBu
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValue({ ...formValue, [name]: value });
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,30 +30,23 @@ export default function SearchForm({ onSubmitMovies, onFilterButtone, isFilterBu
     }, [location]);
 
     return (
-        <section className="search">
+        <div className="search">
             <form className="search__form" onSubmit={handleSubmit} noValidate>
-                <div className="search__field" >
-                    <img className="search__control" alt="Иконка лупа" src={iconSeach} />
-                    <div className="search__internalGroup">
-                        <input
-                            className="search__input"
-                            type="text"
-                            name="film"
-                            placeholder="Фильмы"
-                            value={formValue.film}
-                            onChange={handleChange}
-                        />
-                        {isErrorText && <span className="search__input-error">Нужно ввести ключевое слово</span>}
-                    </div>
-                    <button type="submit" className="search__btn" />
-                </div>
-                <div className="search__filter search__filter_desktop">
-                    <button type="submit" onClick={onFilterButtone} className={`search__filter-button ${isFilterButtone ? "search__filter-button_active" : ""}`} />
-                    <p className="search__filter-text">Короткометражки</p>
-                </div>
+                <input
+                    className="search__input"
+                    type="text"
+                    name="film"
+                    placeholder="Фильмы"
+                    value={formValue.film}
+                    onChange={handleChange}
+                />
+                {isErrorText && <span className="search__input-error">Введите название</span>}
+                <button
+                    className="search__btn"
+                    type="submit"
+                />
+                <FilterCheckbox onFilterButtone={onFilterButtone} isFilterButtone={isFilterButtone} />
             </form>
-            <FilterCheckbox onFilterButtone={onFilterButtone} isFilterButtone={isFilterButtone} />
-
-        </section>
+        </div>
     )
 }

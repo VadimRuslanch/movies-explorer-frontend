@@ -1,5 +1,5 @@
 .portfolio {
-    padding: 0 70px 125px;
+    padding: 100px 70px;
     background: #FAFAFA;
 }
 
@@ -58,9 +58,17 @@
     letter-spacing: -1.2px;
 }
 
+@media (min-width:320px) and (max-width:1280px) {
+    .portfolio {
+        padding-right: calc((100vw - 320px)/(1280 - 320) * (70 - 18) + 18px);
+        padding-left: calc((100vw - 320px)/(1280 - 320) * (70 - 18) + 18px);
+    }
+}
+
 @media screen and (max-width:768px) {
     .portfolio {
-        padding: 0 50px 90px;
+        padding-top: 90px;
+        padding-bottom:  90px;
     }
 
     .portfolio__link-arrow {
@@ -72,7 +80,8 @@
 
 @media screen and (max-width:425px) {
     .portfolio {
-        padding: 0 14px 70px;
+        padding-top: 70px;
+        padding-bottom:  70px;
     }
 
     .portfolio__title {
