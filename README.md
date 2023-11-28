@@ -1,7 +1,7 @@
 # Movies Explorer
 ## Мультистраничный сайт для поиска фильмов
 
-Ссылка на сайт: https://vadim-lebedev.movies.nomoreparties.co
+// Ссылка на сайт: https://vadim-lebedev.movies.nomoreparties.co
 
 Ссылка на Backend: https://github.com/VadimRuslanch/movies-explorer-api
 
